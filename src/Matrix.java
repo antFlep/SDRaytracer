@@ -1,6 +1,7 @@
 import java.util.List;
 
 class Matrix {
+
     float val[][] = new float[4][4];
 
     Matrix() {}
@@ -16,7 +17,6 @@ class Matrix {
             System.out.println();
         }
     }
-
 
     Matrix mult(Matrix m) {
         Matrix r = new Matrix();
@@ -43,40 +43,40 @@ class Matrix {
         return temp;
     }
 
-   static Matrix createId()
-    { return new Matrix(new float[][]{
+   static Matrix createId() {
+        return new Matrix(new float[][]{
          { 1, 0, 0, 0},
          { 0, 1, 0, 0 },
          { 0, 0, 1, 0 },
          { 0, 0, 0, 1 } });
     }
 
-   static Matrix createXRotation(float angle)
-    { return new Matrix(new float[][]{
+   static Matrix createXRotation(float angle) {
+        return new Matrix(new float[][]{
          { 1, 0, 0 , 0},
          { 0, (float)Math.cos(angle), (float)-Math.sin(angle), 0 },
          { 0, (float)Math.sin(angle), (float)Math.cos(angle),0 },
          { 0 , 0, 0, 1 } });
     }
 
-   static Matrix createYRotation(float angle)
-    { return new Matrix(new float[][]{
+   static Matrix createYRotation(float angle) {
+        return new Matrix(new float[][]{
          { (float)Math.cos(angle), 0, (float)Math.sin(angle), 0 },
          { 0, 1, 0, 0 },
          { (float)-Math.sin(angle), 0, (float)Math.cos(angle), 0 },
          { 0, 0, 0, 1 } });
     }
 
-   static Matrix createZRotation(float angle)
-    { return new Matrix(new float[][]{
+   static Matrix createZRotation(float angle) {
+        return new Matrix(new float[][]{
          { (float)Math.cos(angle), (float)-Math.sin(angle), 0, 0 },
          { (float)Math.sin(angle), (float)Math.cos(angle), 0, 0 },
          { 0, 0, 1, 0 },
          { 0, 0, 0, 1 }  });
     }
 
-    static Matrix createTranslation(float dx, float dy, float dz)
-    { return new Matrix(new float[][]{
+    static Matrix createTranslation(float dx, float dy, float dz) {
+        return new Matrix(new float[][]{
          { 1, 0, 0, dx },
          { 0, 1, 0, dy },
          { 0, 0, 1, dz },

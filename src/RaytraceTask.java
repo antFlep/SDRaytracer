@@ -12,8 +12,10 @@ class RaytraceTask implements Callable {
 
     public RGB[] call() {
         RGB[] col = new RGB[tracer.height];
+
         for (int j = 0; j < tracer.height; j++) {
             tracer.image[i][j] = new RGB(0, 0, 0);
+
             for (int k = 0; k < tracer.rayPerPixel; k++) {
                 double di = i + (Math.random() / 2 - 0.25);
                 double dj = j + (Math.random() / 2 - 0.25);
@@ -21,9 +23,11 @@ class RaytraceTask implements Callable {
                     di = i;
                     dj = j;
                 }
+
                 Ray eye_ray = new Ray();
                 eye_ray.setStart(tracer.startX, tracer.startY, tracer.startZ); // ro
-                eye_ray.setDir((float)(((0.5 + di) * tracer.tan_fovx * 2.0) / tracer.width - tracer.tan_fovx),
+                eye_ray.setDir(
+                        (float)(((0.5 + di) * tracer.tan_fovx * 2.0) / tracer.width - tracer.tan_fovx),
                         (float)(((0.5 + dj) * tracer.tan_fovy * 2.0) / tracer.height - tracer.tan_fovy),
                         (float) 1f); // rd
                 eye_ray.normalize();

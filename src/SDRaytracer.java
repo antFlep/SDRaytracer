@@ -179,8 +179,6 @@ public class SDRaytracer extends JFrame {
         }
     }
 
-
-
     RGB rayTrace(Ray ray, int rec) {
         if (rec > maxRec) return black;
         IPoint ip = hitObject(ray); // (ray, p, n, triangle);
@@ -189,7 +187,6 @@ public class SDRaytracer extends JFrame {
         else
             return black;
     }
-
 
     IPoint hitObject(Ray ray) {
         IPoint isect = new IPoint(null, null, -1);
@@ -207,7 +204,6 @@ public class SDRaytracer extends JFrame {
         return isect; // return intersection point and normal
     }
 
-
     RGB addColors(RGB c1, RGB c2, float ratio) {
         return new RGB((c1.red + c2.red * ratio),
                 (c1.green + c2.green * ratio),
@@ -219,6 +215,7 @@ public class SDRaytracer extends JFrame {
         Triangle triangle = ip.triangle;
         RGB color = addColors(triangle.color, ambient_color, 1);
         Ray shadow_ray = new Ray();
+
         for (Light light: lights) {
             shadow_ray.start = point;
             shadow_ray.dir = light.position.minus(point).mult(-1);
@@ -229,6 +226,7 @@ public class SDRaytracer extends JFrame {
                 color = addColors(color, light.color, ratio);
             }
         }
+
         Ray reflection = new Ray();
         //R = 2N(N*L)-L)    L ausgehender Vektor
         Vec3D L = ray.dir.mult(-1);
@@ -244,18 +242,17 @@ public class SDRaytracer extends JFrame {
     void createScene() {
         triangles = new ArrayList < Triangle > ();
 
-
         Cube.addCube(triangles, 0, 35, 0, 10, 10, 10, new RGB(0.3f, 0, 0), 0.4f); //rot, klein
         Cube.addCube(triangles, -70, -20, -20, 20, 100, 100, new RGB(0f, 0, 0.3f), .4f);
         Cube.addCube(triangles, -30, 30, 40, 20, 20, 20, new RGB(0, 0.4f, 0), 0.2f); // gr�n, klein
         Cube.addCube(triangles, 50, -20, -40, 10, 80, 100, new RGB(.5f, .5f, .5f), 0.2f);
         Cube.addCube(triangles, -70, -26, -40, 130, 3, 40, new RGB(.5f, .5f, .5f), 0.2f);
 
-
         Matrix mRx = Matrix.createXRotation((float)(x_angle_factor * Math.PI / 16));
         Matrix mRy = Matrix.createYRotation((float)(y_angle_factor * Math.PI / 16));
         Matrix mT = Matrix.createTranslation(0, 0, 200);
         Matrix m = mT.mult(mRx).mult(mRy);
+
         m.print();
         m.apply(triangles);
     }

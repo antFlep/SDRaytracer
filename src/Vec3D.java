@@ -1,4 +1,5 @@
 class Vec3D {
+
     float x, y, z, w = 1;
 
     Vec3D(float xx, float yy, float zz) {
