@@ -25,4 +25,10 @@ class RGB {
         return color;
     }
 
+    static RGB addColors(RGB c1, RGB c2, float ratio) {
+        return new RGB((c1.red + c2.red * ratio),
+                (c1.green + c2.green * ratio),
+                (c1.blue + c2.blue * ratio));
+    }
+
 }

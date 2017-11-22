@@ -204,16 +204,10 @@ public class SDRaytracer extends JFrame {
         return isect; // return intersection point and normal
     }
 
-    RGB addColors(RGB c1, RGB c2, float ratio) {
-        return new RGB((c1.red + c2.red * ratio),
-                (c1.green + c2.green * ratio),
-                (c1.blue + c2.blue * ratio));
-    }
-
     RGB lighting(Ray ray, IPoint ip, int rec) {
         Vec3D point = ip.ipoint;
         Triangle triangle = ip.triangle;
-        RGB color = addColors(triangle.color, ambient_color, 1);
+        RGB color = RGB.addColors(triangle.color, ambient_color, 1);
         Ray shadow_ray = new Ray();
 
         for (Light light: lights) {
@@ -223,7 +217,7 @@ public class SDRaytracer extends JFrame {
             IPoint ip2 = hitObject(shadow_ray);
             if (ip2.dist < IPoint.epsilon) {
                 float ratio = Math.max(0, shadow_ray.dir.dot(triangle.normal));
-                color = addColors(color, light.color, ratio);
+                color = RGB.addColors(color, light.color, ratio);
             }
         }
 
@@ -235,7 +229,7 @@ public class SDRaytracer extends JFrame {
         reflection.dir.normalize();
         RGB rcolor = rayTrace(reflection, rec + 1);
         float ratio = (float) Math.pow(Math.max(0, reflection.dir.dot(L)), triangle.shininess);
-        color = addColors(color, rcolor, ratio);
+        color = RGB.addColors(color, rcolor, ratio);
         return (color);
     }
 
