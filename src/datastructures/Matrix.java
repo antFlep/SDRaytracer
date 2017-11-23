@@ -90,8 +90,8 @@ public class Matrix {
             t.p1 = this.mult(t.p1);
             t.p2 = this.mult(t.p2);
             t.p3 = this.mult(t.p3);
-            Vec3D e1 = t.p2.minus(t.p1),
-                    e2 = t.p3.minus(t.p1);
+            Vec3D e1 = t.p2.minus(t.p1);
+            Vec3D e2 = t.p3.minus(t.p1);
             t.normal = e1.cross(e2);
             t.normal.normalize();
         }

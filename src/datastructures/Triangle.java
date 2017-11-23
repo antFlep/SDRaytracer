@@ -2,7 +2,9 @@ package datastructures;
 
 public class Triangle {
 
-    Vec3D p1, p2, p3;
+    Vec3D p1;
+    Vec3D p2;
+    Vec3D p3;
     public RGB color;
     public Vec3D normal;
     public float shininess;
@@ -15,7 +17,8 @@ public class Triangle {
         color = col;
         shininess = sh;
 
-        Vec3D e1 = p2.minus(p1), e2 = p3.minus(p1);
+        Vec3D e1 = p2.minus(p1);
+        Vec3D e2 = p3.minus(p1);
         normal = e1.cross(e2);
         normal.normalize();
     }

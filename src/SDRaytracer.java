@@ -32,7 +32,9 @@ public class SDRaytracer extends JFrame {
 
     int maxRec = 3;
     int rayPerPixel = 1;
-    int startX, startY, startZ;
+    int startX;
+    int startY;
+    int startZ;
 
     List < Triangle > triangles;
 
@@ -52,7 +54,8 @@ public class SDRaytracer extends JFrame {
     RGB ambient_color = new RGB(0.01f, 0.01f, 0.01f);
     RGB background_color = new RGB(0.05f, 0.05f, 0.05f);
     RGB black = new RGB(0.0f, 0.0f, 0.0f);
-    int y_angle_factor = 4, x_angle_factor = -4;
+    int y_angle_factor = 4;
+    int x_angle_factor = -4;
 
     public static void main(String argv[]) {
         long start = System.currentTimeMillis();
@@ -64,7 +67,9 @@ public class SDRaytracer extends JFrame {
     }
 
     void profileRenderImage() {
-        long end, start, time;
+        long end;
+        long start;
+        long time;
 
         renderImage(); // initialisiere Datenstrukturen, erster Lauf verf�lscht sonst Messungen
 

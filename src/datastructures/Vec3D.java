@@ -2,7 +2,10 @@ package datastructures;
 
 public class Vec3D {
 
-    float x, y, z, w = 1;
+    float x;
+    float y;
+    float z;
+    float w = 1;
 
     public Vec3D(float xx, float yy, float zz) {
         x = xx;

@@ -4,7 +4,9 @@ import java.awt.*;
 
 public class RGB {
 
-    float red, green, blue;
+    float red;
+    float green;
+    float blue;
     Color color;
 
     public RGB(float r, float g, float b) {
