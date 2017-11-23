@@ -1,14 +1,16 @@
-class Ray {
+package datastructures;
 
-    Vec3D start=new Vec3D(0,0,0);
-    Vec3D dir=new Vec3D(0,0,0);
+public class Ray {
 
-    void setStart(float x, float y, float z) { start=new Vec3D(x,y,z); }
-    void setDir(float dx, float dy, float dz) { dir=new Vec3D(dx, dy, dz); }
-    void normalize() {  dir.normalize(); }
+    public Vec3D start=new Vec3D(0,0,0);
+    public Vec3D dir=new Vec3D(0,0,0);
+
+    public void setStart(float x, float y, float z) { start=new Vec3D(x,y,z); }
+    public void setDir(float dx, float dy, float dz) { dir=new Vec3D(dx, dy, dz); }
+    public void normalize() {  dir.normalize(); }
 
     // see M�ller&Haines, page 305
-    IPoint intersect(Triangle t) {
+    public IPoint intersect(Triangle t) {
         float epsilon=IPoint.epsilon;
 
         Vec3D e1 = t.p2.minus(t.p1);

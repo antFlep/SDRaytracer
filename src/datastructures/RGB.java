@@ -1,11 +1,13 @@
+package datastructures;
+
 import java.awt.*;
 
-class RGB {
+public class RGB {
 
     float red, green, blue;
     Color color;
 
-    RGB(float r, float g, float b) {
+    public RGB(float r, float g, float b) {
 
         if (r > 1) r = 1;
         else if (r < 0) r = 0;
@@ -19,13 +21,13 @@ class RGB {
         blue = b;
     }
 
-    Color color() {
+    public Color color() {
         if (color != null) return color;
         color = new Color((int)(red * 255), (int)(green * 255), (int)(blue * 255));
         return color;
     }
 
-    static RGB addColors(RGB c1, RGB c2, float ratio) {
+    public static RGB addColors(RGB c1, RGB c2, float ratio) {
         return new RGB((c1.red + c2.red * ratio),
                 (c1.green + c2.green * ratio),
                 (c1.blue + c2.blue * ratio));

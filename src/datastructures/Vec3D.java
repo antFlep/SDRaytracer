@@ -1,8 +1,10 @@
-class Vec3D {
+package datastructures;
+
+public class Vec3D {
 
     float x, y, z, w = 1;
 
-    Vec3D(float xx, float yy, float zz) {
+    public Vec3D(float xx, float yy, float zz) {
         x = xx;
         y = yy;
         z = zz;
@@ -19,22 +21,22 @@ class Vec3D {
         return new Vec3D(x + v.x, y + v.y, z + v.z);
     }
 
-    Vec3D minus(Vec3D v) {
+    public Vec3D minus(Vec3D v) {
         return new Vec3D(x - v.x, y - v.y, z - v.z);
     }
 
-    Vec3D mult(float a) {
+    public Vec3D mult(float a) {
         return new Vec3D(a * x, a * y, a * z);
     }
 
-    void normalize() {
+    public void normalize() {
         float dist = (float) Math.sqrt((x * x) + (y * y) + (z * z));
         x = x / dist;
         y = y / dist;
         z = z / dist;
     }
 
-    float dot(Vec3D v) {
+    public float dot(Vec3D v) {
         return x * v.x + y * v.y + z * v.z;
     }
 

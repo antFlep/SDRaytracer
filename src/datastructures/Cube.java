@@ -1,6 +1,8 @@
+package datastructures;
+
 import java.util.List;
 
-class Cube {
+public class Cube {
 
     public static void addCube(List < Triangle > triangles, int x, int y, int z, int w, int h, int d, RGB c, float sh) {
 
