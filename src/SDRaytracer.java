@@ -2,17 +2,12 @@ import datastructures.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Dimension;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.ArrayList;
-import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.concurrent.Callable;
