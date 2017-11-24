@@ -1,5 +1,7 @@
 package sdraytracer.datatypes;
 
+import sdraytracer.math.Vec3D;
+
 public class IPoint {
 
     public final static float epsilon = 0.0001f;

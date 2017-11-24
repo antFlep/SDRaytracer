@@ -1,10 +1,12 @@
 package sdraytracer.datatypes;
 
+import sdraytracer.math.Vec3D;
+
 public class Triangle {
 
-    Vec3D p1;
-    Vec3D p2;
-    Vec3D p3;
+    public Vec3D p1;
+    public Vec3D p2;
+    public Vec3D p3;
     public RGB color;
     public Vec3D normal;
     public float shininess;

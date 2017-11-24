@@ -1,5 +1,6 @@
 package sdraytracer.datatypes;
 
+import sdraytracer.math.Vec3D;
 import sdraytracer.scenes.Scene;
 
 public class Ray {

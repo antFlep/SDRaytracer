@@ -1,6 +1,7 @@
 package sdraytracer;
 
 import sdraytracer.datatypes.*;
+import sdraytracer.math.Vec3D;
 
 import javax.swing.*;
 import java.awt.*;

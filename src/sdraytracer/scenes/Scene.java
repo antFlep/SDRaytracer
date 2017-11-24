@@ -1,6 +1,6 @@
 package sdraytracer.scenes;
 
-import sdraytracer.datatypes.Matrix;
+import sdraytracer.math.Matrix;
 import sdraytracer.datatypes.RGB;
 import sdraytracer.datatypes.Triangle;
 import sdraytracer.tools.Utilities;

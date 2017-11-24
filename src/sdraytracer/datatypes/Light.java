@@ -1,5 +1,7 @@
 package sdraytracer.datatypes;
 
+import sdraytracer.math.Vec3D;
+
 public class Light {
 
     public RGB color;

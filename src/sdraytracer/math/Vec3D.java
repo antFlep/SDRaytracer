@@ -1,4 +1,4 @@
-package sdraytracer.datatypes;
+package sdraytracer.math;
 
 public class Vec3D {
 
@@ -43,7 +43,7 @@ public class Vec3D {
         return x * v.x + y * v.y + z * v.z;
     }
 
-    Vec3D cross(Vec3D v) {
+    public Vec3D cross(Vec3D v) {
         return new Vec3D(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x);
     }
 }

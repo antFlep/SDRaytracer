@@ -1,4 +1,6 @@
-package sdraytracer.datatypes;
+package sdraytracer.math;
+
+import sdraytracer.datatypes.Triangle;
 
 import java.util.List;
 

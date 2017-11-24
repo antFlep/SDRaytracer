@@ -3,7 +3,7 @@ package sdraytracer.tools;
 import sdraytracer.SDRaytracer;
 import sdraytracer.datatypes.RGB;
 import sdraytracer.datatypes.Triangle;
-import sdraytracer.datatypes.Vec3D;
+import sdraytracer.math.Vec3D;
 
 import java.util.List;
 
