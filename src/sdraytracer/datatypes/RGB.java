@@ -1,4 +1,4 @@
-package datatypes;
+package sdraytracer.datatypes;
 
 import java.awt.*;
 

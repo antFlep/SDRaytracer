@@ -1,6 +1,6 @@
-package datatypes;
+package sdraytracer.datatypes;
 
-import scenes.Scene;
+import sdraytracer.scenes.Scene;
 
 public class Ray {
 

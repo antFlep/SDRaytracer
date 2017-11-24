@@ -1,5 +1,6 @@
-import datatypes.*;
-import scenes.Scene;
+package sdraytracer;
+
+import sdraytracer.datatypes.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,7 +16,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import static scenes.Scene.createScene;
+import static sdraytracer.scenes.Scene.createScene;
 
 /* Implementation of a very simple Raytracer
    Stephan Diehl, Universit�t Trier, 2010-2016

@@ -1,4 +1,4 @@
-package tools;
+package sdraytracer.tools;
 
 class DEBUG {
 

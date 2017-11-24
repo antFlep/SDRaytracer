@@ -1,4 +1,4 @@
-package datatypes;
+package sdraytracer.datatypes;
 
 public class Vec3D {
 

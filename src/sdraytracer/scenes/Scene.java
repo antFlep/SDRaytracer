@@ -1,9 +1,9 @@
-package scenes;
+package sdraytracer.scenes;
 
-import datatypes.Cube;
-import datatypes.Matrix;
-import datatypes.RGB;
-import datatypes.Triangle;
+import sdraytracer.datatypes.Cube;
+import sdraytracer.datatypes.Matrix;
+import sdraytracer.datatypes.RGB;
+import sdraytracer.datatypes.Triangle;
 
 import java.util.ArrayList;
 import java.util.List;
