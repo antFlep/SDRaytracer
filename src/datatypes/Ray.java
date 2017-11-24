@@ -1,5 +1,7 @@
 package datatypes;
 
+import scenes.Scene;
+
 public class Ray {
 
     public Vec3D start=new Vec3D(0,0,0);
@@ -44,5 +46,21 @@ public class Ray {
         Vec3D ip=t.p1.mult(1-u-v).add(t.p2.mult(u)).add(t.p3.mult(v));
         //DEBUG.debug("Intersection point: "+ip.x+","+ip.y+","+ip.z);
         return new IPoint(t,ip,dist);
+    }
+
+    public static IPoint hitObject(Ray ray) {
+        IPoint isect = new IPoint(null, null, -1);
+        float idist = -1;
+        for (Triangle t: Scene.getTriangles()) {
+            IPoint ip = ray.intersect(t);
+            if (ip.dist != -1)
+                if ((idist == -1) || (ip.dist < idist)) { // save that intersection
+                    idist = ip.dist;
+                    isect.ipoint = ip.ipoint;
+                    isect.dist = ip.dist;
+                    isect.triangle = t;
+                }
+        }
+        return isect; // return intersection point and normal
     }
 }

@@ -183,28 +183,14 @@ public class SDRaytracer extends JFrame {
 
     RGB rayTrace(Ray ray, int rec) {
         if (rec > maxRec) return black;
-        IPoint ip = hitObject(ray); // (ray, p, n, triangle);
+        IPoint ip = Ray.hitObject(ray); // (ray, p, n, triangle);
         if (ip.dist > IPoint.epsilon)
             return lighting(ray, ip, rec);
         else
             return black;
     }
 
-    IPoint hitObject(Ray ray) {
-        IPoint isect = new IPoint(null, null, -1);
-        float idist = -1;
-        for (Triangle t: Scene.getTriangles()) {
-            IPoint ip = ray.intersect(t);
-            if (ip.dist != -1)
-                if ((idist == -1) || (ip.dist < idist)) { // save that intersection
-                    idist = ip.dist;
-                    isect.ipoint = ip.ipoint;
-                    isect.dist = ip.dist;
-                    isect.triangle = t;
-                }
-        }
-        return isect; // return intersection point and normal
-    }
+
 
     RGB lighting(Ray ray, IPoint ip, int rec) {
         Vec3D point = ip.ipoint;
@@ -216,7 +202,7 @@ public class SDRaytracer extends JFrame {
             shadow_ray.start = point;
             shadow_ray.dir = light.position.minus(point).mult(-1);
             shadow_ray.dir.normalize();
-            IPoint ip2 = hitObject(shadow_ray);
+            IPoint ip2 = Ray.hitObject(shadow_ray);
             if (ip2.dist < IPoint.epsilon) {
                 float ratio = Math.max(0, shadow_ray.dir.dot(triangle.normal));
                 color = RGB.addColors(color, light.color, ratio);
