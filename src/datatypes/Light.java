@@ -1,4 +1,4 @@
-package datastructures;
+package datatypes;
 
 public class Light {
 

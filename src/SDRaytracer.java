@@ -1,4 +1,5 @@
-import datastructures.*;
+import datatypes.*;
+import scenes.Scene;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -6,8 +7,6 @@ import java.awt.Container;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Dimension;
-import java.util.List;
-import java.util.ArrayList;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.concurrent.Callable;
@@ -16,11 +15,14 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import static scenes.Scene.createScene;
+
 /* Implementation of a very simple Raytracer
    Stephan Diehl, Universit�t Trier, 2010-2016
 */
 
 public class SDRaytracer extends JFrame {
+
     private static final long serialVersionUID = 1L;
     boolean profiling = false;
     int width = 1000;
@@ -35,8 +37,6 @@ public class SDRaytracer extends JFrame {
     int startX;
     int startY;
     int startZ;
-
-    List < Triangle > triangles;
 
     Light mainLight = new Light(new Vec3D(0, 100, 0), new RGB(0.1f, 0.1f, 0.1f));
 
@@ -91,7 +91,7 @@ public class SDRaytracer extends JFrame {
     }
 
     SDRaytracer() {
-        createScene();
+        createScene(x_angle_factor, y_angle_factor);
 
         if (!profiling) renderImage();
         else profileRenderImage();
@@ -148,7 +148,7 @@ public class SDRaytracer extends JFrame {
                     redraw = true;
                 }
                 if (redraw) {
-                    createScene();
+                    createScene(x_angle_factor, y_angle_factor);
                     renderImage();
                     repaint();
                 }
@@ -193,7 +193,7 @@ public class SDRaytracer extends JFrame {
     IPoint hitObject(Ray ray) {
         IPoint isect = new IPoint(null, null, -1);
         float idist = -1;
-        for (Triangle t: triangles) {
+        for (Triangle t: Scene.getTriangles()) {
             IPoint ip = ray.intersect(t);
             if (ip.dist != -1)
                 if ((idist == -1) || (ip.dist < idist)) { // save that intersection
@@ -233,24 +233,6 @@ public class SDRaytracer extends JFrame {
         float ratio = (float) Math.pow(Math.max(0, reflection.dir.dot(L)), triangle.shininess);
         color = RGB.addColors(color, rcolor, ratio);
         return (color);
-    }
-
-    void createScene() {
-        triangles = new ArrayList < Triangle > ();
-
-        Cube.addCube(triangles, 0, 35, 0, 10, 10, 10, new RGB(0.3f, 0, 0), 0.4f); //rot, klein
-        Cube.addCube(triangles, -70, -20, -20, 20, 100, 100, new RGB(0f, 0, 0.3f), .4f);
-        Cube.addCube(triangles, -30, 30, 40, 20, 20, 20, new RGB(0, 0.4f, 0), 0.2f); // gr�n, klein
-        Cube.addCube(triangles, 50, -20, -40, 10, 80, 100, new RGB(.5f, .5f, .5f), 0.2f);
-        Cube.addCube(triangles, -70, -26, -40, 130, 3, 40, new RGB(.5f, .5f, .5f), 0.2f);
-
-        Matrix mRx = Matrix.createXRotation((float)(x_angle_factor * Math.PI / 16));
-        Matrix mRy = Matrix.createYRotation((float)(y_angle_factor * Math.PI / 16));
-        Matrix mT = Matrix.createTranslation(0, 0, 200);
-        Matrix m = mT.mult(mRx).mult(mRy);
-
-        m.print();
-        m.apply(triangles);
     }
 
 }

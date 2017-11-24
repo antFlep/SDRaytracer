@@ -1,4 +1,4 @@
-package datastructures;
+package datatypes;
 
 import java.util.List;
 
