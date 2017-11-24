@@ -20,7 +20,7 @@ public class Vec3D {
         w = ww;
     }
 
-    Vec3D add(Vec3D v) {
+    public Vec3D add(Vec3D v) {
         return new Vec3D(x + v.x, y + v.y, z + v.z);
     }
 
