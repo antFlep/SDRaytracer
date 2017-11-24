@@ -2,21 +2,14 @@ package sdraytracer;
 
 import sdraytracer.datatypes.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.Container;
-import java.awt.BorderLayout;
-import java.awt.Graphics;
-import java.awt.Dimension;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 import static sdraytracer.scenes.Scene.createScene;
+import static sdraytracer.tools.Utilities.profileRenderImage;
 
 /* Implementation of a very simple Raytracer
    Stephan Diehl, Universit�t Trier, 2010-2016
@@ -33,7 +26,7 @@ public class SDRaytracer extends JFrame {
     int nrOfProcessors = Runtime.getRuntime().availableProcessors();
     ExecutorService eservice = Executors.newFixedThreadPool(nrOfProcessors);
 
-    int maxRec = 3;
+    public int maxRec = 3;
     int rayPerPixel = 1;
     int startX;
     int startY;
@@ -67,35 +60,11 @@ public class SDRaytracer extends JFrame {
         System.out.println("nrprocs=" + sdr.nrOfProcessors);
     }
 
-    void profileRenderImage() {
-        long end;
-        long start;
-        long time;
-
-        renderImage(); // initialisiere Datenstrukturen, erster Lauf verf�lscht sonst Messungen
-
-        for (int procs = 1; procs < 6; procs++) {
-
-            maxRec = procs - 1;
-            System.out.print(procs);
-            for (int i = 0; i < 10; i++) {
-                start = System.currentTimeMillis();
-
-                renderImage();
-
-                end = System.currentTimeMillis();
-                time = end - start;
-                System.out.print(";" + time);
-            }
-            System.out.println("");
-        }
-    }
-
     SDRaytracer() {
         createScene(x_angle_factor, y_angle_factor);
 
         if (!profiling) renderImage();
-        else profileRenderImage();
+        else profileRenderImage(this);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container contentPane = this.getContentPane();
@@ -166,7 +135,7 @@ public class SDRaytracer extends JFrame {
     double tan_fovx;
     double tan_fovy;
 
-    void renderImage() {
+    public void renderImage() {
         tan_fovx = Math.tan(fovx);
         tan_fovy = Math.tan(fovy);
         for (int i = 0; i < width; i++) {
